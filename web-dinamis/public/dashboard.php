@@ -11,6 +11,7 @@ $avg = avg_rating($db);
 
 $statusRows = $db->query("SELECT status, COUNT(*) AS total FROM watchlist GROUP BY status")->fetchAll();
 $typeRows = $db->query("SELECT type, COUNT(*) AS total FROM watchlist GROUP BY type")->fetchAll();
+$genreRows = $db->query("SELECT genre, COUNT(*) AS total FROM watchlist GROUP BY genre ORDER BY total DESC LIMIT 5")->fetchAll();
 $continue = $db->query("SELECT * FROM watchlist WHERE status = 'Watching' ORDER BY watched_episodes DESC LIMIT 2")->fetchAll();
 $top = $db->query("SELECT * FROM watchlist ORDER BY rating DESC, id ASC LIMIT 5")->fetchAll();
 $recent = $db->query("SELECT * FROM watchlist ORDER BY added_date DESC, id DESC LIMIT 6")->fetchAll();
@@ -48,10 +49,31 @@ require __DIR__ . '/../app/partials/header.php';
         <div class="chart-wrap"><canvas id="statusChart"></canvas></div>
       </div>
 
-      <div class="panel">
-        <h2>Tipe Konten</h2>
-        <p>Perbandingan Anime, Movie, dan Series.</p>
-        <div class="chart-wrap"><canvas id="typeChart"></canvas></div>
+            <div class="panel">
+        <h2>Genre Populer</h2>
+        <p>Genre yang paling banyak muncul di koleksi WatchVault.</p>
+
+        <div class="genre-list">
+          <?php foreach ($genreRows as $genre): ?>
+            <div class="genre-row">
+              <span><?= e($genre['genre']) ?></span>
+              <strong><?= e($genre['total']) ?> judul</strong>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      </div>
+
+      <div class="panel collection-goal">
+        <div>
+          <span class="eyebrow">Target Koleksi</span>
+          <h2>Selesaikan lebih banyak tontonan bulan ini.</h2>
+          <p>
+            Saat ini ada <?= e($completed) ?> judul selesai dari total <?= e($total) ?> koleksi.
+            Lanjutkan tontonan aktif supaya progress koleksi makin rapi.
+          </p>
+        </div>
+
+        <a class="btn secondary" href="/watchlist.php">Kelola Watchlist</a>
       </div>
     </div>
 

@@ -12,19 +12,21 @@
 </head>
 <body>
 <header class="topbar">
-  <a class="brand" href="/">
+  <a class="brand" href="/dashboard.php">
     <span class="brand-icon material-symbols-outlined">movie</span>
     <span>WatchVault</span>
   </a>
+
   <nav class="nav">
     <a class="<?= $active === 'dashboard' ? 'active' : '' ?>" href="/dashboard.php">Dashboard</a>
     <a class="<?= $active === 'watchlist' ? 'active' : '' ?>" href="/watchlist.php">Watchlist</a>
-    <a class="<?= $active === 'tambah' ? 'active' : '' ?>" href="/tambah.php">Tambah</a>
+    <a class="<?= $active === 'tambah' ? 'active' : '' ?>" href="/tambah.php">Koleksi Baru</a>
     <a class="<?= $active === 'tentang' ? 'active' : '' ?>" href="/tentang.php">Tentang</a>
   </nav>
+
   <a class="top-cta" href="/tambah.php">
     <span class="material-symbols-outlined">add</span>
-    Tambah Baru
+    Koleksi Baru
   </a>
 </header>
 
