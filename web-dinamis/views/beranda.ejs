@@ -1,0 +1,79 @@
+<%- include('partials/head') %>
+<%- include('partials/topbar') %>
+<main class="page page-landing">
+  <%- include('partials/flash') %>
+
+  <section class="hero">
+    <div class="eyebrow">AI Personal Finance Tracker Indonesia</div>
+    <h1>Catat keuangan cukup dengan chat.</h1>
+    <p>
+      Tulis transaksi natural seperti “beli kopi 25rb”, lalu FinChat mengenali nominal, kategori, tanggal, dan menyimpannya ke database.
+    </p>
+    <div class="hero-actions">
+      <a class="button button-primary" href="/daftar">Mulai Sekarang</a>
+      <a class="button button-secondary" href="#demo-chat">Lihat Demo</a>
+    </div>
+  </section>
+
+  <section class="phone-card" id="demo-chat">
+    <div class="chat-header">
+      <div class="bot-avatar">AI</div>
+      <div>
+        <strong>FinChat Assistant</strong>
+        <small>Online • rule-based parser aktif</small>
+      </div>
+    </div>
+
+    <div class="chat-body">
+      <div class="bubble bubble-user">tadi beli kopi 25rb</div>
+      <div class="bubble bubble-ai">
+        <div class="detect-title">Pengeluaran terdeteksi</div>
+        <div class="parsed-grid">
+          <span>Nominal</span><strong>Rp 25.000</strong>
+          <span>Kategori</span><strong>Makanan & Minuman</strong>
+          <span>Tanggal</span><strong>Hari ini</strong>
+        </div>
+        <div class="button-row compact">
+          <button type="button">Simpan</button>
+          <button type="button">Edit</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-chips">
+      <span>beli kopi 25rb</span>
+      <span>berapa pengeluaran makan minggu ini?</span>
+      <span>sisa budget transport berapa?</span>
+      <span>bulan ini paling boros apa?</span>
+    </div>
+  </section>
+
+  <section class="feature-grid">
+    <article class="feature-card">
+      <span>💬</span>
+      <h2>Input via Chat</h2>
+      <p>Parser lokal membaca nominal, kategori, tipe transaksi, dan tanggal dari bahasa natural.</p>
+    </article>
+    <article class="feature-card">
+      <span>📊</span>
+      <h2>Dashboard Bulanan</h2>
+      <p>Lihat saldo, pemasukan, pengeluaran, transaksi terbaru, dan kategori paling boros.</p>
+    </article>
+    <article class="feature-card">
+      <span>🎯</span>
+      <h2>Budget & Insight</h2>
+      <p>Atur limit per kategori, pantau persentase penggunaan, dan baca saran sederhana.</p>
+    </article>
+  </section>
+
+  <section class="cta-card">
+    <h2>Mulai kelola transaksi harianmu.</h2>
+    <p>FinChat adalah aplikasi pencatatan keuangan pribadi. Aplikasi ini tidak terhubung ke rekening bank dan tidak melakukan transaksi uang.</p>
+    <div class="hero-actions">
+      <a class="button button-primary" href="/daftar">Daftar Gratis</a>
+      <a class="button button-secondary" href="/masuk">Masuk Demo</a>
+    </div>
+    <small>Akun demo: demo@finchat.local / password123</small>
+  </section>
+</main>
+<%- include('partials/end') %>

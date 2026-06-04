@@ -1,0 +1,75 @@
+<%- include('partials/head') %>
+<main class="mobile-shell with-nav">
+  <header class="app-header">
+    <div>
+      <small>Target</small>
+      <h1>Budget</h1>
+    </div>
+    <a class="mini-button" href="/dashboard">Dashboard</a>
+  </header>
+  <%- include('partials/flash') %>
+
+  <section class="form-card compact-card">
+    <form method="GET" action="/budget" class="month-form">
+      <label>Bulan
+        <input type="month" name="month" value="<%= selectedMonth %>" />
+      </label>
+      <button class="button button-secondary" type="submit">Lihat</button>
+    </form>
+  </section>
+
+  <section class="form-card">
+    <h2>Set budget per kategori</h2>
+    <form method="POST" action="/budget" class="form-stack">
+      <input type="hidden" name="monthYear" value="<%= selectedMonth %>" />
+      <label>Kategori
+        <select name="categoryId" required>
+          <% expenseCategories.forEach((category) => { %>
+            <option value="<%= category.id %>"><%= category.name %></option>
+          <% }) %>
+        </select>
+      </label>
+      <label>Limit bulanan
+        <input type="number" name="monthlyLimit" placeholder="900000" required />
+      </label>
+      <button class="button button-primary full" type="submit">Simpan Budget</button>
+    </form>
+  </section>
+
+  <section class="section-block">
+    <div class="section-title">
+      <h2>Progress <%= monthLabel %></h2>
+      <small>Real-time vs limit</small>
+    </div>
+
+    <% if (budgets.length === 0) { %>
+      <div class="empty-card">Belum ada budget untuk bulan ini.</div>
+    <% } %>
+
+    <% budgets.forEach((budget) => { 
+      const used = Number(budget.used_amount || 0);
+      const limit = Number(budget.monthly_limit || 1);
+      const percent = Math.min(100, Math.round((used / limit) * 100));
+      const isDanger = used >= limit * 0.8;
+      const remaining = limit - used;
+    %>
+      <article class="budget-row">
+        <div class="budget-head">
+          <div>
+            <strong><%= budget.category_name %></strong>
+            <small>Terpakai <%= formatRupiah(used) %> dari <%= formatRupiah(limit) %></small>
+          </div>
+          <span class="budget-percent <%= isDanger ? 'danger' : '' %>"><%= percent %>%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill <%= isDanger ? 'danger' : '' %>" style="width:<%= percent %>%"></div>
+        </div>
+        <p class="budget-note <%= remaining < 0 ? 'danger-text' : '' %>">
+          <%= remaining >= 0 ? `Sisa ${formatRupiah(remaining)}` : `Melebihi limit ${formatRupiah(Math.abs(remaining))}` %>
+        </p>
+      </article>
+    <% }) %>
+  </section>
+</main>
+<%- include('partials/bottom-nav') %>
+<%- include('partials/end') %>

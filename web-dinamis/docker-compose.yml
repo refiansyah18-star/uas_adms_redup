@@ -1,0 +1,53 @@
+services:
+  web-dinamis:
+    image: ${DOCKERHUB_USERNAME:-redupthedestroyer}/web-dinamis-uas:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: web-dinamis-uas
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      DB_HOST: mariadb-dinamis
+      DB_PORT: 3306
+      DB_USER: ${MARIADB_USER:-finchat_user}
+      DB_PASSWORD: ${MARIADB_PASSWORD:-finchat_password}
+      DB_NAME: ${MARIADB_DATABASE:-finchat_uas}
+      SESSION_SECRET: ${SESSION_SECRET:-finchat_uas_session_secret}
+    depends_on:
+      mariadb-dinamis:
+        condition: service_healthy
+    networks:
+      - finchat-network
+
+  mariadb-dinamis:
+    image: mariadb:11.4
+    container_name: mariadb-dinamis-uas
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-root_finchat_password}
+      MARIADB_DATABASE: ${MARIADB_DATABASE:-finchat_uas}
+      MARIADB_USER: ${MARIADB_USER:-finchat_user}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD:-finchat_password}
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    networks:
+      - finchat-network
+
+volumes:
+  mariadb_data:
+
+networks:
+  finchat-network:
+    driver: bridge

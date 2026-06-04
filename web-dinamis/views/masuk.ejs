@@ -1,0 +1,23 @@
+<%- include('partials/head') %>
+<%- include('partials/topbar') %>
+<main class="auth-page">
+  <section class="auth-card">
+    <div class="auth-head">
+      <div class="brand-icon large">◈</div>
+      <h1>Masuk ke FinChat</h1>
+      <p>Gunakan akun demo atau akun yang sudah kamu buat.</p>
+    </div>
+    <%- include('partials/flash') %>
+    <form method="POST" action="/masuk" class="form-stack">
+      <label>Email
+        <input type="email" name="email" value="demo@finchat.local" required />
+      </label>
+      <label>Kata sandi
+        <input type="password" name="password" value="password123" required />
+      </label>
+      <button class="button button-primary full" type="submit">Masuk</button>
+    </form>
+    <p class="auth-note">Belum punya akun? <a href="/daftar">Daftar sekarang</a></p>
+  </section>
+</main>
+<%- include('partials/end') %>

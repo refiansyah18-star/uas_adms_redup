@@ -1,0 +1,109 @@
+<%- include('partials/head') %>
+<main class="mobile-shell with-nav">
+  <header class="app-header">
+    <div>
+      <small>Beranda</small>
+      <h1>Halo, <%= user.name.split(' ')[0] %></h1>
+    </div>
+    <a class="mini-button" href="/profil">Profil</a>
+  </header>
+  <%- include('partials/flash') %>
+
+  <section class="quick-chat-card">
+    <div>
+      <strong>Catat transaksi cepat</strong>
+      <p>Ketik natural seperti “beli kopi 25rb”.</p>
+    </div>
+    <form method="POST" action="/chat" class="chat-input-form">
+      <input type="hidden" name="redirectTo" value="/dashboard" />
+      <input type="text" name="message" placeholder="beli kopi 25rb" required />
+      <button type="submit">Kirim</button>
+    </form>
+    <div class="chat-chips left">
+      <a href="/input-chat?text=beli%20kopi%2025rb">Demo parse</a>
+      <a href="/input-chat?text=sisa%20budget%20makan%20berapa">Cek budget</a>
+    </div>
+  </section>
+
+  <section class="summary-card">
+    <div class="summary-top">
+      <span>Saldo bulan ini</span>
+      <form method="GET" action="/dashboard">
+        <input type="month" name="month" value="<%= data.month %>" onchange="this.form.submit()" />
+      </form>
+    </div>
+    <h2><%= formatRupiah(data.summary.balance) %></h2>
+    <p><%= data.monthLabel %></p>
+    <div class="summary-split">
+      <div>
+        <span class="dot income"></span>
+        <small>Pemasukan</small>
+        <strong><%= formatRupiah(data.summary.income) %></strong>
+      </div>
+      <div>
+        <span class="dot expense"></span>
+        <small>Pengeluaran</small>
+        <strong><%= formatRupiah(data.summary.expense) %></strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="section-title">
+      <h2>Kategori pengeluaran</h2>
+      <small><%= data.monthLabel %></small>
+    </div>
+    <% if (data.categoryStats.length === 0) { %>
+      <div class="empty-card">Belum ada pengeluaran di bulan ini.</div>
+    <% } else { %>
+      <% data.categoryStats.forEach((item) => { 
+        const percent = data.summary.expense ? Math.round((Number(item.total) / data.summary.expense) * 100) : 0;
+      %>
+        <div class="stat-row">
+          <div>
+            <strong><%= item.name %></strong>
+            <small><%= percent %>% dari pengeluaran</small>
+          </div>
+          <span><%= formatRupiah(item.total) %></span>
+        </div>
+      <% }) %>
+    <% } %>
+  </section>
+
+  <section class="section-block">
+    <div class="section-title">
+      <h2>Insight FinChat</h2>
+      <a href="/budget">Lihat budget</a>
+    </div>
+    <% data.insights.forEach((insight) => { %>
+      <article class="insight-card <%= insight.tone %>">
+        <strong><%= insight.title %></strong>
+        <p><%= insight.message %></p>
+      </article>
+    <% }) %>
+  </section>
+
+  <section class="section-block">
+    <div class="section-title">
+      <h2>Transaksi terbaru</h2>
+      <a href="/riwayat">Lihat semua</a>
+    </div>
+    <% if (data.recentTransactions.length === 0) { %>
+      <div class="empty-card">Belum ada transaksi.</div>
+    <% } %>
+    <% data.recentTransactions.forEach((trx) => { %>
+      <div class="transaction-row">
+        <div class="transaction-icon"><%= trx.type === 'income' ? '+' : '-' %></div>
+        <div class="transaction-main">
+          <strong><%= trx.description %></strong>
+          <small><%= trx.category_name %> • <%= formatDateShortID(trx.transaction_date) %></small>
+        </div>
+        <span class="amount <%= trx.type %>"><%= trx.type === 'income' ? '+' : '-' %> <%= formatRupiah(trx.amount) %></span>
+      </div>
+    <% }) %>
+  </section>
+
+  <a class="fab" href="/input-chat">＋</a>
+</main>
+<%- include('partials/bottom-nav') %>
+<%- include('partials/end') %>

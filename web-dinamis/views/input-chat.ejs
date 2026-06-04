@@ -1,0 +1,79 @@
+<%- include('partials/head') %>
+<main class="mobile-shell with-nav">
+  <header class="app-header">
+    <div>
+      <small>AI Assistant</small>
+      <h1>Input via Chat</h1>
+    </div>
+    <a class="mini-button" href="/input-manual">Manual</a>
+  </header>
+  <%- include('partials/flash') %>
+
+  <section class="chat-screen-card">
+    <div class="chat-header flat">
+      <div class="bot-avatar">AI</div>
+      <div>
+        <strong>FinChat Assistant</strong>
+        <small>Parser berjalan di backend Express</small>
+      </div>
+    </div>
+
+    <div class="chat-body tall">
+      <% if (!preview) { %>
+        <div class="bubble bubble-ai">
+          Tulis transaksi seperti “tadi beli kopi 25rb”. Saya akan membaca nominal, kategori, dan tanggalnya.
+        </div>
+      <% } else { %>
+        <div class="bubble bubble-user"><%= inputText %></div>
+        <div class="bubble bubble-ai wide">
+          <div class="detect-title"><%= preview.type === 'income' ? 'Pemasukan terdeteksi' : 'Pengeluaran terdeteksi' %></div>
+          <form method="POST" action="/input-chat/simpan" class="parsed-form">
+            <input type="hidden" name="originalText" value="<%= preview.originalText %>" />
+            <input type="hidden" name="confidence" value="<%= preview.confidence %>" />
+            <label>Jenis
+              <select name="type">
+                <option value="expense" <%= preview.type === 'expense' ? 'selected' : '' %>>Pengeluaran</option>
+                <option value="income" <%= preview.type === 'income' ? 'selected' : '' %>>Pemasukan</option>
+              </select>
+            </label>
+            <label>Nominal
+              <input type="number" name="amount" value="<%= preview.amount %>" required />
+            </label>
+            <label>Kategori
+              <input type="text" name="categoryName" value="<%= preview.categoryName %>" required />
+            </label>
+            <label>Deskripsi
+              <input type="text" name="description" value="<%= preview.description %>" required />
+            </label>
+            <label>Tanggal
+              <input type="date" name="transactionDate" value="<%= preview.transactionDate %>" required />
+            </label>
+            <div class="confidence">Confidence parser: <%= Math.round(preview.confidence * 100) %>%</div>
+            <div class="button-row">
+              <button class="button button-primary" type="submit">Simpan</button>
+              <a class="button button-secondary" href="/input-manual">Edit Manual</a>
+              <a class="button button-ghost" href="/input-chat">Batal</a>
+            </div>
+          </form>
+        </div>
+      <% } %>
+    </div>
+  </section>
+
+  <form method="POST" action="/input-chat/preview" class="fixed-chat-input">
+    <input type="text" name="message" placeholder="beli kopi 25rb" value="<%= inputText %>" required autofocus />
+    <button type="submit">Parse</button>
+  </form>
+
+  <section class="section-block query-block">
+    <h2>Contoh query</h2>
+    <div class="chat-chips left">
+      <span>bulan ini paling boros apa?</span>
+      <span>berapa pengeluaran makan minggu ini?</span>
+      <span>sisa budget transport berapa?</span>
+    </div>
+    <p class="muted">Untuk UAS, query analisis ditampilkan sebagai contoh UI. Parser transaksi sudah aktif dan tersimpan ke database.</p>
+  </section>
+</main>
+<%- include('partials/bottom-nav') %>
+<%- include('partials/end') %>

@@ -1,0 +1,53 @@
+<%- include('partials/head') %>
+<main class="mobile-shell with-nav">
+  <header class="app-header">
+    <div>
+      <small>Transaksi</small>
+      <h1>Riwayat</h1>
+    </div>
+    <a class="mini-button" href="/input-manual">Tambah</a>
+  </header>
+  <%- include('partials/flash') %>
+
+  <section class="filter-card">
+    <form method="GET" action="/riwayat" class="filter-form">
+      <label>Bulan
+        <input type="month" name="month" value="<%= selectedMonth %>" />
+      </label>
+      <label>Kategori
+        <select name="category">
+          <option value="">Semua</option>
+          <% categories.forEach((category) => { %>
+            <option value="<%= category.name %>" <%= selectedCategory === category.name ? 'selected' : '' %>><%= category.name %></option>
+          <% }) %>
+        </select>
+      </label>
+      <button class="button button-primary" type="submit">Terapkan</button>
+    </form>
+  </section>
+
+  <section class="section-block">
+    <div class="section-title">
+      <h2><%= monthLabel %></h2>
+      <a href="/export.csv">Export CSV</a>
+    </div>
+
+    <% if (transactions.length === 0) { %>
+      <div class="empty-card">Belum ada transaksi pada filter ini.</div>
+    <% } %>
+
+    <% transactions.forEach((trx) => { %>
+      <div class="transaction-row">
+        <div class="transaction-icon"><%= trx.type === 'income' ? '+' : '-' %></div>
+        <div class="transaction-main">
+          <strong><%= trx.description %></strong>
+          <small><%= trx.category_name %> • <%= formatDateID(trx.transaction_date) %></small>
+          <% if (trx.source_text) { %><em>“<%= trx.source_text %>”</em><% } %>
+        </div>
+        <span class="amount <%= trx.type %>"><%= trx.type === 'income' ? '+' : '-' %> <%= formatRupiah(trx.amount) %></span>
+      </div>
+    <% }) %>
+  </section>
+</main>
+<%- include('partials/bottom-nav') %>
+<%- include('partials/end') %>

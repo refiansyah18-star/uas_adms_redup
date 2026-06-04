@@ -1,0 +1,16 @@
+<header class="topbar">
+  <a class="brand" href="/">
+    <span class="brand-icon">◈</span>
+    <span><strong>Fin</strong><b>Chat</b></span>
+  </a>
+  <% if (user) { %>
+    <form method="POST" action="/keluar">
+      <button class="button button-ghost button-small" type="submit">Keluar</button>
+    </form>
+  <% } else { %>
+    <div class="topbar-actions">
+      <a class="button button-ghost button-small" href="/masuk">Masuk</a>
+      <a class="button button-primary button-small" href="/daftar">Daftar Gratis</a>
+    </div>
+  <% } %>
+</header>

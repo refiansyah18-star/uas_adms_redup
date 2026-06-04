@@ -1,0 +1,27 @@
+<%- include('partials/head') %>
+<%- include('partials/topbar') %>
+<main class="auth-page">
+  <section class="auth-card">
+    <div class="auth-head">
+      <div class="brand-icon large">◈</div>
+      <h1>Buat akun FinChat</h1>
+      <p>Data transaksi hanya digunakan untuk pencatatan keuangan pribadi.</p>
+    </div>
+    <%- include('partials/flash') %>
+    <form method="POST" action="/daftar" class="form-stack">
+      <label>Nama lengkap
+        <input type="text" name="name" placeholder="Ahmad Refiansyah" required />
+      </label>
+      <label>Email
+        <input type="email" name="email" placeholder="nama@email.com" required />
+      </label>
+      <label>Kata sandi
+        <input type="password" name="password" placeholder="Minimal 6 karakter" minlength="6" required />
+      </label>
+      <button class="button button-primary full" type="submit">Daftar Gratis</button>
+    </form>
+    <p class="privacy-note">FinChat tidak terhubung ke rekening bank dan hanya dipakai untuk pencatatan keuangan pribadi.</p>
+    <p class="auth-note">Sudah punya akun? <a href="/masuk">Masuk</a></p>
+  </section>
+</main>
+<%- include('partials/end') %>
