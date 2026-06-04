@@ -1,0 +1,4 @@
+node_modules/
+web-dinamis/node_modules/
+.env
+.DS_Store
