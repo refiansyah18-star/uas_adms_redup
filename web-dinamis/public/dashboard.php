@@ -24,7 +24,7 @@ require __DIR__ . '/../app/partials/header.php';
   <section class="dashboard-head">
     <div class="page-title">
       <span class="eyebrow">Dashboard</span>
-      <h1>Halo, Refiansyah</h1>
+      <h1>Halo, Redup</h1>
       <p>Ringkasan koleksi film dan anime yang tersimpan di WatchVault.</p>
     </div>
     <a class="btn primary" href="/tambah.php">
