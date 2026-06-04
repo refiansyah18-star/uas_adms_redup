@@ -12,7 +12,7 @@
 </head>
 <body>
 <header class="topbar">
-  <a class="brand" href="/dashboard.php">
+  <a class="brand" href="/index.php">
     <span class="brand-icon material-symbols-outlined">movie</span>
     <span>WatchVault</span>
   </a>
