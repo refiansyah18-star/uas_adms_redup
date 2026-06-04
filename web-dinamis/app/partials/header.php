@@ -24,10 +24,11 @@
     <a class="<?= $active === 'tentang' ? 'active' : '' ?>" href="/tentang.php">Tentang</a>
   </nav>
 
-  <div class="theme-toggle">
-    <span class="material-symbols-outlined">light_mode</span>
-    <span class="material-symbols-outlined">dark_mode</span>
-    <input type="checkbox" id="themeToggle" aria-label="Toggle dark mode">
+  <a class="top-cta" href="/tambah.php">
+    <span class="material-symbols-outlined">add</span>
+    Koleksi Baru
+  </a>
+</header>
 
 <?php if ($flash = flash_get()): ?>
   <div class="flash <?= e($flash['type']) ?>"><?= e($flash['message']) ?></div>
