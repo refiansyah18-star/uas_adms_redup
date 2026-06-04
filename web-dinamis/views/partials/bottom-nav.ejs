@@ -1,14 +1,15 @@
 <nav class="bottom-nav" aria-label="Navigasi utama">
   <a class="nav-item <%= currentPath === '/dashboard' ? 'active' : '' %>" href="/dashboard">
-    <span class="material-symbols-outlined">home</span>
+    <span class="material-symbols-outlined">dashboard</span>
     <small>Beranda</small>
   </a>
-  <a class="nav-item <%= currentPath === '/riwayat' || currentPath === '/input-chat' || currentPath === '/input-manual' ? 'active' : '' %>" href="/riwayat">
-    <span class="material-symbols-outlined">history</span>
+  <a class="nav-item <%= currentPath === '/riwayat' || currentPath === '/input-chat' || currentPath === '/input-manual' ? 'active' : '' %>"
+    href="/riwayat">
+    <span class="material-symbols-outlined">receipt_long</span>
     <small>Riwayat</small>
   </a>
   <a class="nav-item <%= currentPath === '/budget' ? 'active' : '' %>" href="/budget">
-    <span class="material-symbols-outlined">data_usage</span>
+    <span class="material-symbols-outlined">donut_large</span>
     <small>Budget</small>
   </a>
   <a class="nav-item <%= currentPath === '/profil' ? 'active' : '' %>" href="/profil">
