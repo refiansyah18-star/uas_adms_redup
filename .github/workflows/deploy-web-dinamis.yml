@@ -1,0 +1,57 @@
+name: Deploy Web Dinamis UAS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "web-dinamis/**"
+      - ".github/workflows/deploy-web-dinamis.yml"
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push dynamic image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./web-dinamis
+          file: ./web-dinamis/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/web-dinamis-uas:latest
+
+      - name: Copy docker compose files to EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USERNAME }}
+          key: ${{ secrets.AWS_PRIVATE_KEY }}
+          source: "web-dinamis/docker-compose.yml,web-dinamis/db/init.sql"
+          target: "/home/${{ secrets.AWS_USERNAME }}/uas-dinamis"
+
+      - name: Deploy dynamic app on EC2
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USERNAME }}
+          key: ${{ secrets.AWS_PRIVATE_KEY }}
+          envs: DOCKERHUB_USERNAME
+          script: |
+            cd /home/${{ secrets.AWS_USERNAME }}/uas-dinamis/web-dinamis
+            docker compose down
+            docker pull $DOCKERHUB_USERNAME/web-dinamis-uas:latest
+            docker compose up -d
+            docker ps
