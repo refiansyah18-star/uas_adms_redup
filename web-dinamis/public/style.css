@@ -894,3 +894,352 @@ select:focus {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* === FinChat UI Polish v2: deploy fix === */
+:root {
+  --bg: #f9f9ff;
+  --surface: #ffffff;
+  --surface-soft: #f1f3ff;
+  --surface-muted: #e9edff;
+  --surface-green: #ecfdf3;
+  --text: #141b2b;
+  --muted: #667085;
+  --line: #dce3d7;
+  --line-strong: #bdcaba;
+  --primary: #006b2c;
+  --primary-dark: #005320;
+  --primary-bright: #16a34a;
+  --danger: #ba1a1a;
+  --warning: #a16207;
+  --warning-bg: #fffbeb;
+  --radius-card: 16px;
+  --radius-action: 12px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(127, 252, 151, 0.18), transparent 26rem),
+    radial-gradient(circle at 85% 18%, rgba(233, 237, 255, 0.8), transparent 30rem),
+    var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 15px;
+}
+
+.topbar {
+  height: 64px;
+  padding: 0 clamp(18px, 5vw, 72px);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+}
+
+.brand { font-weight: 900; letter-spacing: -0.03em; font-size: 20px; }
+.brand-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: #ecfdf3;
+  border-color: #bbf7d0;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.65);
+}
+
+.page {
+  width: min(1180px, calc(100% - 32px));
+  padding: 0;
+}
+
+.hero {
+  padding: 56px 0 22px;
+}
+
+.hero h1 {
+  max-width: 760px;
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: .96;
+  letter-spacing: -0.065em;
+  margin-top: 18px;
+}
+
+.hero p { max-width: 680px; font-size: 17px; }
+
+.button,
+button.button,
+a.button,
+.mini-button {
+  min-height: 44px;
+  border-radius: 999px;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.button:hover,
+.mini-button:hover { transform: translateY(-1px); }
+.button-primary,
+button.button-primary,
+a.button-primary {
+  background: var(--primary);
+  color: #fff !important;
+  border-color: var(--primary);
+}
+.button-secondary,
+a.button-secondary {
+  background: #fff;
+  border-color: var(--line);
+  color: var(--text);
+}
+.button-ghost { color: var(--primary-dark); font-weight: 700; }
+
+.phone-card {
+  width: min(520px, 100%);
+  border-radius: 24px;
+  border-color: var(--line);
+  background: rgba(255,255,255,.95);
+}
+.chat-header { height: 64px; background: #fff; }
+.bot-avatar { background: var(--primary); }
+.chat-body { min-height: 280px; }
+.bubble { border-radius: 18px; }
+.bubble-user { background: var(--primary); color: white; }
+.bubble-ai { border-color: var(--line); }
+
+.feature-grid { gap: 16px; }
+.feature-card,
+.cta-card,
+.auth-card,
+.onboarding-card,
+.quick-chat-card,
+.summary-card,
+.section-block,
+.form-card,
+.filter-card,
+.profile-card,
+.chat-screen-card {
+  border-color: var(--line);
+  border-radius: 18px;
+  background: rgba(255,255,255,.94);
+}
+.feature-card,
+.cta-card { padding: 24px; }
+.feature-card h2,
+.section-block h2,
+.form-card h2,
+.cta-card h2 { font-size: 20px; }
+
+.auth-page,
+.center-shell { padding: 42px 18px; }
+.auth-card,
+.onboarding-card {
+  width: min(520px, 100%);
+  padding: 40px;
+}
+.auth-head h1,
+.onboarding-card h1 { font-size: clamp(34px, 5vw, 48px); }
+.auth-head p { font-size: 18px; line-height: 1.55; }
+
+input,
+select {
+  height: 52px;
+  border-radius: 14px;
+  background: #fff;
+  border-color: var(--line);
+  font-size: 15px;
+}
+input:focus,
+select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 107, 44, .10);
+}
+
+.mobile-shell {
+  width: min(1060px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 26px 0 120px;
+}
+.with-nav { padding-bottom: 120px; }
+.app-header {
+  margin-bottom: 18px;
+  padding: 4px 2px;
+}
+.app-header small {
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+.app-header h1 {
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.055em;
+}
+
+.flash { margin-bottom: 16px; }
+.quick-chat-card,
+.summary-card,
+.section-block,
+.form-card,
+.filter-card,
+.profile-card,
+.chat-screen-card {
+  padding: 22px;
+  margin-bottom: 16px;
+}
+.quick-chat-card p { margin-top: 6px; }
+.chat-input-form { grid-template-columns: 1fr 104px; }
+.chat-input-form button,
+.fixed-chat-input button {
+  height: 52px;
+  border-radius: 14px;
+  background: var(--primary);
+}
+.chat-chips.left { margin-top: 12px; }
+.chat-chips span,
+.chat-chips a {
+  min-height: 34px;
+  background: #fff;
+  border-color: var(--line);
+}
+
+.summary-card h2 {
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+}
+.summary-top input,
+.month-form input,
+.filter-form input,
+.filter-form select { height: 44px; }
+.summary-split { gap: 18px; }
+.summary-split > div {
+  background: var(--surface-soft);
+  border: .5px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.section-title h2 { font-size: 21px; letter-spacing: -0.03em; }
+.section-title a { color: var(--primary-dark); }
+.stat-row,
+.transaction-row { padding: 16px 0; }
+.transaction-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+}
+.transaction-main strong { font-size: 16px; }
+.amount { font-size: 15px; }
+.amount.income { color: var(--primary); }
+.amount.expense { color: var(--text); }
+.insight-card {
+  border-radius: 14px;
+  padding: 16px;
+}
+.insight-card.warning { background: var(--warning-bg); }
+
+.filter-form {
+  align-items: end;
+  flex-wrap: wrap;
+}
+.filter-form label { min-width: 210px; }
+.filter-form .button { min-width: 130px; }
+
+.bottom-nav {
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  width: min(720px, calc(100% - 32px));
+  height: 76px;
+  border: .5px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(12px);
+}
+.nav-item { font-size: 22px; }
+.nav-item small { font-size: 12px; }
+.nav-item.active { color: var(--primary); }
+
+.fab {
+  right: max(24px, calc((100vw - min(1060px, calc(100vw - 32px))) / 2 + 24px));
+  bottom: 112px;
+  border-radius: 18px;
+  background: var(--primary);
+}
+
+.budget-row,
+.profile-metrics div,
+.info-card,
+.empty-card {
+  border-color: var(--line);
+  border-radius: 14px;
+}
+
+@media (min-width: 900px) {
+  .mobile-shell.with-nav {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr);
+    gap: 16px;
+    align-items: start;
+  }
+
+  .mobile-shell.with-nav > .app-header,
+  .mobile-shell.with-nav > .flash,
+  .mobile-shell.with-nav > .filter-card,
+  .mobile-shell.with-nav > .form-card,
+  .mobile-shell.with-nav > .chat-screen-card,
+  .mobile-shell.with-nav > .profile-card:first-of-type {
+    grid-column: 1 / -1;
+  }
+
+  .mobile-shell.with-nav > .quick-chat-card,
+  .mobile-shell.with-nav > .summary-card {
+    grid-column: 1;
+  }
+
+  .mobile-shell.with-nav > .section-block:nth-of-type(3) {
+    grid-column: 1;
+  }
+
+  .mobile-shell.with-nav > .section-block:nth-of-type(4),
+  .mobile-shell.with-nav > .section-block:nth-of-type(5) {
+    grid-column: 2;
+  }
+
+  .mobile-shell.with-nav > .section-block:nth-of-type(4) {
+    grid-row: 4;
+  }
+
+  .mobile-shell.with-nav > .section-block:nth-of-type(5) {
+    grid-row: 5 / span 2;
+  }
+
+  .mobile-shell.with-nav > .filter-card + .section-block {
+    grid-column: 1 / -1;
+  }
+
+  .mobile-shell.with-nav > .profile-metrics,
+  .profile-metrics {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .feature-card { min-height: 180px; }
+}
+
+@media (max-width: 899px) {
+  .page { width: min(100% - 28px, 680px); }
+  .mobile-shell { width: min(100% - 24px, 520px); padding-top: 16px; }
+  .bottom-nav { bottom: 0; width: 100%; border-radius: 0; border-left: 0; border-right: 0; }
+  .fab { right: 18px; bottom: 88px; }
+  .hero { padding-top: 38px; }
+  .hero h1 { font-size: clamp(38px, 12vw, 54px); }
+}
+
+@media (max-width: 520px) {
+  .auth-card,
+  .onboarding-card { padding: 24px; }
+  .chat-input-form,
+  .fixed-chat-input { grid-template-columns: 1fr; }
+  .chat-input-form button,
+  .fixed-chat-input button { width: 100%; }
+  .summary-split { display: grid; }
+  .transaction-row { gap: 10px; }
+  .transaction-icon { width: 40px; height: 40px; }
+  .amount { font-size: 13px; }
+}
