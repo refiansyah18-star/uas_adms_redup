@@ -1,79 +1,121 @@
 <%- include('partials/head') %>
-<%- include('partials/topbar') %>
-<main class="page page-landing">
-  <%- include('partials/flash') %>
+  <%- include('partials/topbar') %>
+    <main class="page-landing">
+      <%- include('partials/flash') %>
 
-  <section class="hero">
-    <div class="eyebrow">AI Personal Finance Tracker Indonesia</div>
-    <h1>Catat keuangan cukup dengan chat.</h1>
-    <p>
-      Tulis transaksi natural seperti “beli kopi 25rb”, lalu FinChat mengenali nominal, kategori, tanggal, dan menyimpannya ke database.
-    </p>
-    <div class="hero-actions">
-      <a class="button button-primary" href="/daftar">Mulai Sekarang</a>
-      <a class="button button-secondary" href="#demo-chat">Lihat Demo</a>
-    </div>
-  </section>
+        <section class="hero">
+          <div>
+            <div class="eyebrow">AI-powered • Bahasa Indonesia</div>
+            <h1>Catat keuangan cukup <span class="accent">dengan chat.</span></h1>
+            <p>
+              Tulis <code>beli kopi 25rb tadi pagi</code> — FinChat mengenali nominal, kategori, tanggal, lalu
+              menyimpannya ke database.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="/daftar">
+                <span class="material-symbols-rounded">rocket_launch</span>
+                Mulai Sekarang
+              </a>
+              <a class="button button-secondary" href="#demo-chat">
+                <span class="material-symbols-rounded">play_circle</span>
+                Lihat Demo
+              </a>
+            </div>
+          </div>
+        </section>
 
-  <section class="phone-card" id="demo-chat">
-    <div class="chat-header">
-      <div class="bot-avatar">AI</div>
-      <div>
-        <strong>FinChat Assistant</strong>
-        <small>Online • rule-based parser aktif</small>
-      </div>
-    </div>
+        <section class="landing-section split-section" id="demo-chat">
+          <div>
+            <div class="section-kicker">Parser transaksi</div>
+            <h2>Input santai, hasilnya langsung rapi.</h2>
+            <p>FinChat memakai rule-based NLP parser di backend Express untuk membaca input harian berbahasa Indonesia.
+            </p>
 
-    <div class="chat-body">
-      <div class="bubble bubble-user">tadi beli kopi 25rb</div>
-      <div class="bubble bubble-ai">
-        <div class="detect-title">Pengeluaran terdeteksi</div>
-        <div class="parsed-grid">
-          <span>Nominal</span><strong>Rp 25.000</strong>
-          <span>Kategori</span><strong>Makanan & Minuman</strong>
-          <span>Tanggal</span><strong>Hari ini</strong>
-        </div>
-        <div class="button-row compact">
-          <button type="button">Simpan</button>
-          <button type="button">Edit</button>
-        </div>
-      </div>
-    </div>
+            <div class="check-list">
+              <div class="check-item">
+                <span class="check-icon material-symbols-rounded">check</span>
+                <div>
+                  <strong>Deteksi kategori otomatis</strong>
+                  <p>Kata “kopi”, “makan”, atau “ayam geprek” masuk ke Makanan & Minuman.</p>
+                </div>
+              </div>
+              <div class="check-item">
+                <span class="check-icon material-symbols-rounded">check</span>
+                <div>
+                  <strong>Konversi nominal</strong>
+                  <p>Input seperti 25rb, 800 ribu, atau 1.5jt disimpan sebagai angka di MariaDB.</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-    <div class="chat-chips">
-      <span>beli kopi 25rb</span>
-      <span>berapa pengeluaran makan minggu ini?</span>
-      <span>sisa budget transport berapa?</span>
-      <span>bulan ini paling boros apa?</span>
-    </div>
-  </section>
+          <div class="hero-demo-card">
+            <div class="chat-header">
+              <div class="bot-avatar material-symbols-rounded">auto_awesome</div>
+              <div>
+                <strong>FinChat AI</strong>
+                <small>Rule-based parser aktif</small>
+              </div>
+            </div>
+            <div class="chat-body">
+              <div class="bubble bubble-user">tadi beli kopi 25rb</div>
+              <div class="bubble bubble-ai wide">
+                <div class="detect-title">Pengeluaran terdeteksi</div>
+                <div class="parsed-grid">
+                  <span>Nominal</span><strong>Rp 25.000</strong>
+                  <span>Kategori</span><strong>Makanan & Minuman</strong>
+                  <span>Tanggal</span><strong>Hari ini</strong>
+                </div>
+                <div class="button-row" style="margin-top:14px">
+                  <button class="button button-primary" type="button">Simpan</button>
+                  <button class="button button-secondary" type="button">Edit</button>
+                </div>
+              </div>
+            </div>
+            <div class="chat-chips">
+              <span>beli kopi 25rb</span>
+              <span>berapa pengeluaran makan minggu ini?</span>
+              <span>sisa budget transport berapa?</span>
+              <span>bulan ini paling boros apa?</span>
+            </div>
+          </div>
+        </section>
 
-  <section class="feature-grid">
-    <article class="feature-card">
-      <span>💬</span>
-      <h2>Input via Chat</h2>
-      <p>Parser lokal membaca nominal, kategori, tipe transaksi, dan tanggal dari bahasa natural.</p>
-    </article>
-    <article class="feature-card">
-      <span>📊</span>
-      <h2>Dashboard Bulanan</h2>
-      <p>Lihat saldo, pemasukan, pengeluaran, transaksi terbaru, dan kategori paling boros.</p>
-    </article>
-    <article class="feature-card">
-      <span>🎯</span>
-      <h2>Budget & Insight</h2>
-      <p>Atur limit per kategori, pantau persentase penggunaan, dan baca saran sederhana.</p>
-    </article>
-  </section>
+        <section class="landing-section">
+          <div style="text-align:center; max-width:720px; margin:0 auto 34px">
+            <div class="section-kicker">Fitur utama</div>
+            <h2>Dirancang untuk demo full-stack yang jelas.</h2>
+            <p>Backend, database, parser, dashboard, dan Docker Compose berjalan sebagai satu web dinamis di AWS EC2.
+            </p>
+          </div>
+          <div class="feature-grid" style="width:100%; padding:0">
+            <article class="feature-card">
+              <span class="feature-icon material-symbols-rounded">chat</span>
+              <h2>Input via Chat</h2>
+              <p>Ketik transaksi natural dan sistem mengekstrak data penting tanpa form panjang.</p>
+            </article>
+            <article class="feature-card">
+              <span class="feature-icon material-symbols-rounded">analytics</span>
+              <h2>Dashboard Bulanan</h2>
+              <p>Lihat saldo, pemasukan, pengeluaran, grafik kategori, dan transaksi terbaru.</p>
+            </article>
+            <article class="feature-card">
+              <span class="feature-icon material-symbols-rounded">track_changes</span>
+              <h2>Budget & Insight</h2>
+              <p>Atur limit per kategori dan lihat peringatan jika pengeluaran mendekati batas.</p>
+            </article>
+          </div>
+        </section>
 
-  <section class="cta-card">
-    <h2>Mulai kelola transaksi harianmu.</h2>
-    <p>FinChat adalah aplikasi pencatatan keuangan pribadi. Aplikasi ini tidak terhubung ke rekening bank dan tidak melakukan transaksi uang.</p>
-    <div class="hero-actions">
-      <a class="button button-primary" href="/daftar">Daftar Gratis</a>
-      <a class="button button-secondary" href="/masuk">Masuk Demo</a>
-    </div>
-    <small>Akun demo: demo@finchat.local / password123</small>
-  </section>
-</main>
-<%- include('partials/end') %>
+        <section class="cta-card">
+          <h2>Mulai kelola transaksi harianmu.</h2>
+          <p>FinChat adalah aplikasi pencatatan keuangan pribadi. Tidak terhubung ke rekening bank dan tidak melakukan
+            transaksi uang.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="/daftar">Daftar Gratis</a>
+            <a class="button button-secondary" href="/masuk">Masuk Demo</a>
+          </div>
+          <small>Akun demo: demo@finchat.local / password123</small>
+        </section>
+    </main>
+    <%- include('partials/end') %>

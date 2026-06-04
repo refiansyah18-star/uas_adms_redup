@@ -1,59 +1,73 @@
 <%- include('partials/head') %>
-<main class="mobile-shell with-nav">
-  <header class="app-header">
-    <div>
-      <small>Akun</small>
-      <h1>Profil</h1>
-    </div>
-    <form method="POST" action="/keluar"><button class="mini-button" type="submit">Keluar</button></form>
-  </header>
-  <%- include('partials/flash') %>
-
-  <section class="profile-card">
-    <div class="profile-avatar"><%= user.name.charAt(0).toUpperCase() %></div>
-    <h2><%= user.name %></h2>
-    <p><%= user.email %></p>
-  </section>
-
-  <section class="section-block">
-    <div class="section-title">
-      <h2>Ringkasan akun</h2>
-      <a href="/export.csv">Export CSV</a>
-    </div>
-    <div class="profile-metrics">
+  <main class="mobile-shell with-nav">
+    <header class="app-header">
       <div>
-        <small>Total transaksi</small>
-        <strong><%= totals.total_transactions %></strong>
+        <small>Akun</small>
+        <h1>Profil</h1>
       </div>
-      <div>
-        <small>Total pemasukan</small>
-        <strong><%= formatRupiah(totals.income) %></strong>
-      </div>
-      <div>
-        <small>Total pengeluaran</small>
-        <strong><%= formatRupiah(totals.expense) %></strong>
-      </div>
-    </div>
-  </section>
+      <form method="POST" action="/keluar"><button class="mini-button" type="submit"><span
+            class="material-symbols-rounded">logout</span> Keluar</button></form>
+    </header>
+    <%- include('partials/flash') %>
 
-  <section class="section-block">
-    <h2>Keamanan data</h2>
-    <div class="info-card">
-      <strong>Password disimpan dalam bentuk hash.</strong>
-      <p>Data transaksi digunakan untuk pencatatan pribadi di aplikasi ini. FinChat tidak terhubung ke rekening bank dan tidak melakukan transaksi uang.</p>
-    </div>
-  </section>
+      <section class="profile-card">
+        <div class="profile-avatar">
+          <%= user.name.charAt(0).toUpperCase() %>
+        </div>
+        <h2>
+          <%= user.name %>
+        </h2>
+        <p>
+          <%= user.email %>
+        </p>
+      </section>
 
-  <section class="section-block">
-    <h2>Info project UAS</h2>
-    <div class="info-list">
-      <div><span>Nama app</span><strong>FinChat Lite</strong></div>
-      <div><span>Backend</span><strong>Node.js + Express</strong></div>
-      <div><span>Database</span><strong>MariaDB</strong></div>
-      <div><span>Deploy</span><strong>Docker Compose di AWS EC2</strong></div>
-      <div><span>Public port</span><strong>3000</strong></div>
-    </div>
-  </section>
-</main>
-<%- include('partials/bottom-nav') %>
-<%- include('partials/end') %>
+      <section class="section-block">
+        <div class="section-title">
+          <h2>Ringkasan akun</h2>
+          <a href="/export.csv">Export CSV</a>
+        </div>
+        <div class="profile-metrics">
+          <div>
+            <small>Total transaksi</small>
+            <strong>
+              <%= totals.total_transactions %>
+            </strong>
+          </div>
+          <div>
+            <small>Total pemasukan</small>
+            <strong>
+              <%= formatRupiah(totals.income) %>
+            </strong>
+          </div>
+          <div>
+            <small>Total pengeluaran</small>
+            <strong>
+              <%= formatRupiah(totals.expense) %>
+            </strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2>Keamanan data</h2>
+        <div class="info-card">
+          <strong>Password disimpan dalam bentuk hash.</strong>
+          <p>Data transaksi digunakan untuk pencatatan pribadi di aplikasi ini. FinChat tidak terhubung ke rekening bank
+            dan tidak melakukan transaksi uang.</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <h2>Info project UAS</h2>
+        <div class="info-list">
+          <div><span>Nama app</span><strong>FinChat Lite</strong></div>
+          <div><span>Backend</span><strong>Node.js + Express</strong></div>
+          <div><span>Database</span><strong>MariaDB</strong></div>
+          <div><span>Deploy</span><strong>Docker Compose di AWS EC2</strong></div>
+          <div><span>Public port</span><strong>3000</strong></div>
+        </div>
+      </section>
+  </main>
+  <%- include('partials/bottom-nav') %>
+    <%- include('partials/end') %>
