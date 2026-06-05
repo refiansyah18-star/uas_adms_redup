@@ -98,3 +98,31 @@ function avg_rating(PDO $db): string
     $value = $db->query("SELECT AVG(NULLIF(rating, 0)) FROM watchlist")->fetchColumn();
     return $value ? number_format((float)$value, 1) : '0.0';
 }
+
+function is_logged_in(): bool
+{
+    return isset($_SESSION['user_id']);
+}
+
+function current_user(): ?array
+{
+    if (!is_logged_in()) {
+        return null;
+    }
+    static $user = null;
+    if ($user === null) {
+        $db = db();
+        $stmt = $db->prepare("SELECT * FROM users WHERE id = ?");
+        $stmt->execute([$_SESSION['user_id']]);
+        $user = $stmt->fetch() ?: null;
+    }
+    return $user;
+}
+
+function require_login(): void
+{
+    if (!is_logged_in()) {
+        flash_set('Silakan login terlebih dahulu.', 'error');
+        redirect_to('/login.php');
+    }
+}
