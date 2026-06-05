@@ -31,7 +31,7 @@
   <?php endif; ?>
 
   <?php if (is_logged_in()): ?>
-    <div style="display:flex;align-items:center;gap:1.5rem">
+    <div style="display:flex;align-items:center;gap:1.5rem;justify-self:end;">
       <span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);font-weight:800;">
         <span class="material-symbols-outlined" style="font-size:18px;">person</span>
         <?= e(current_user()['full_name'] ?: current_user()['username']) ?>
