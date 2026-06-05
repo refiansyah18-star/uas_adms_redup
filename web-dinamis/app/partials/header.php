@@ -31,19 +31,19 @@
   <?php endif; ?>
 
   <?php if (is_logged_in()): ?>
-    <div style="display:flex;align-items:center;gap:.75rem">
-      <span style="font-size:.85rem;color:var(--on-surface-variant);font-weight:500;">
-        <span class="material-symbols-outlined" style="font-size:1.1rem;vertical-align:-3px;margin-right:2px;">person</span>
+    <div style="display:flex;align-items:center;gap:1.5rem">
+      <span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);font-weight:800;">
+        <span class="material-symbols-outlined" style="font-size:18px;">person</span>
         <?= e(current_user()['full_name'] ?: current_user()['username']) ?>
       </span>
-      <a class="top-cta" href="/logout.php" style="background:rgba(255,180,171,.1);color:var(--error);border:1px solid rgba(255,180,171,.2);">
-        <span class="material-symbols-outlined" style="font-size:1rem;">logout</span>
+      <a class="top-cta" href="/logout.php" style="background:rgba(255,180,171,.08);color:var(--red);border:1px solid rgba(255,180,171,.18);">
+        <span class="material-symbols-outlined" style="font-size:18px;">logout</span>
         Keluar
       </a>
     </div>
   <?php else: ?>
-    <a class="top-cta" href="/login.php" style="background:var(--surface-variant);color:var(--on-surface);border:1px solid var(--border);">
-      <span class="material-symbols-outlined" style="font-size:1.1rem;">login</span>
+    <a class="top-cta" href="/login.php" style="background:var(--surface-2);color:var(--text);border:1px solid var(--line);">
+      <span class="material-symbols-outlined" style="font-size:18px;">login</span>
       Login
     </a>
   <?php endif; ?>
