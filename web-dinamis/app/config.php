@@ -21,6 +21,20 @@ function db(): PDO
         PDO::ATTR_EMULATE_PREPARES => false,
     ]);
 
+    // Ensure users table exists
+    $pdo->exec("CREATE TABLE IF NOT EXISTS users (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(50) NOT NULL UNIQUE,
+        full_name VARCHAR(100) NOT NULL,
+        password_hash VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )");
+
+    // Seed default admin user if not exists
+    $hash = password_hash('admin123', PASSWORD_BCRYPT, ['cost' => 12]);
+    $stmt = $pdo->prepare("INSERT IGNORE INTO users (username, full_name, password_hash) VALUES ('admin', 'Admin WatchVault', ?)");
+    $stmt->execute([$hash]);
+
     return $pdo;
 }
 

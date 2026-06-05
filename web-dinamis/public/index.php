@@ -30,12 +30,12 @@ require __DIR__ . '/../app/partials/header.php';
           </a>
         <?php else: ?>
           <a class="btn primary" href="/login.php">
-            <span class="material-symbols-outlined">login</span>
-            Login
+            <span class="material-symbols-outlined">rocket_launch</span>
+            Mulai Gunakan
           </a>
           <a class="btn secondary" href="/tentang.php">
-            <span class="material-symbols-outlined">info</span>
-            Pelajari Platform
+            <span class="material-symbols-outlined">explore</span>
+            Lihat Fitur
           </a>
         <?php endif; ?>
       </div>
@@ -85,14 +85,16 @@ require __DIR__ . '/../app/partials/header.php';
     <p>Total <?= e($total) ?> judul tersimpan, <?= e($watching) ?> sedang ditonton, dan <?= e($completed) ?> selesai ditonton.</p>
     <div class="hero-actions" style="justify-content:center">
       <?php if (is_logged_in()): ?>
-        <a class="btn primary" href="/tambah.php">Tambah Tontonan</a>
+        <a class="btn primary" href="/tambah.php">
+          <span class="material-symbols-outlined">add_circle</span>
+          Tambah Tontonan
+        </a>
       <?php else: ?>
         <a class="btn primary" href="/login.php">
-          <span class="material-symbols-outlined">login</span>
-          Login
+          <span class="material-symbols-outlined">key</span>
+          Akses Sekarang
         </a>
       <?php endif; ?>
-      <a class="btn secondary" href="/tentang.php">Pelajari Platform</a>
     </div>
   </section>
 </main>

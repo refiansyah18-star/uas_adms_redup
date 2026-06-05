@@ -42,7 +42,7 @@
       </a>
     </div>
   <?php else: ?>
-    <a class="top-cta" href="/login.php" style="background:var(--primary);color:var(--on-primary);">
+    <a class="top-cta" href="/login.php" style="background:var(--surface-variant);color:var(--on-surface);border:1px solid var(--border);">
       <span class="material-symbols-outlined" style="font-size:1.1rem;">login</span>
       Login
     </a>
