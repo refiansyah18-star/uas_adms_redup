@@ -88,14 +88,21 @@ require __DIR__ . '/../app/partials/header.php';
   <section class="about-cta">
     <h2>Siap merapikan watchlist kamu?</h2>
     <p>Mulai tambahkan tontonan baru dan buat koleksi film, anime, serta series jadi lebih teratur.</p>
-    <div class="hero-actions">
-      <a class="btn primary" href="/tambah.php">
-        <span class="material-symbols-outlined">add</span>
-        Tambah Koleksi
-      </a>
-      <a class="btn secondary" href="/watchlist.php">Lihat Watchlist</a>
+    <div class="hero-actions" style="justify-content:center">
+      <?php if (is_logged_in()): ?>
+        <a class="btn primary" href="/tambah.php">
+          <span class="material-symbols-outlined">add</span>
+          Tambah Koleksi
+        </a>
+        <a class="btn secondary" href="/watchlist.php">Lihat Watchlist</a>
+      <?php else: ?>
+        <a class="btn primary" href="/login.php">
+          <span class="material-symbols-outlined">key</span>
+          Akses Sekarang
+        </a>
+      <?php endif; ?>
     </div>
-    </section>
+  </section>
 
   <section class="watchlist-bottom">
     <div>
@@ -107,11 +114,18 @@ require __DIR__ . '/../app/partials/header.php';
     </div>
 
     <div class="watchlist-bottom-actions">
-      <a class="btn primary" href="/tambah.php">
-        <span class="material-symbols-outlined">add</span>
-        Tambah Koleksi
-      </a>
-      <a class="btn secondary" href="/dashboard.php">Kembali ke Dashboard</a>
+      <?php if (is_logged_in()): ?>
+        <a class="btn primary" href="/tambah.php">
+          <span class="material-symbols-outlined">add</span>
+          Tambah Koleksi
+        </a>
+        <a class="btn secondary" href="/dashboard.php">Kembali ke Dashboard</a>
+      <?php else: ?>
+        <a class="btn primary" href="/login.php">
+          <span class="material-symbols-outlined">login</span>
+          Login
+        </a>
+      <?php endif; ?>
     </div>
   </section>
 </main>

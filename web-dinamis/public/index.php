@@ -15,9 +15,10 @@ require __DIR__ . '/../app/partials/header.php';
 
 <main class="container">
   <section class="landing-hero">
-    <div class="hero-text">
-      <h1 class="hero-title">Satu tempat untuk semua <span class="gradient-text">tontonan</span> favoritmu.</h1>
-      <p class="hero-subtitle">Simpan, pantau progress, dan kurasi film, anime, serta series dalam koleksi pribadi yang rapi.</p>
+    <div>
+      <div class="eyebrow">Personal media vault</div>
+      <h1>Kelola daftar film dan anime favoritmu.</h1>
+      <p>Simpan tontonan, pantau progress episode, beri rating, dan atur status watchlist dalam satu dashboard visual.</p>
       <div class="hero-actions">
         <?php if (is_logged_in()): ?>
           <a class="btn primary" href="/dashboard.php">
@@ -74,9 +75,9 @@ require __DIR__ . '/../app/partials/header.php';
       <p>Lihat rata-rata rating, status tontonan, dan distribusi tipe koleksi.</p>
     </article>
     <article class="feature-card">
-      <span class="material-symbols-outlined">database</span>
-      <h3>Database MariaDB</h3>
-      <p>Seluruh koleksi berjalan sebagai aplikasi web dinamis dengan penyimpanan database.</p>
+      <span class="material-symbols-outlined">storage</span>
+      <h3>Penyimpanan Aman</h3>
+      <p>Koleksi berhargamu tersimpan dengan aman menggunakan arsitektur database relasional modern yang handal.</p>
     </article>
   </section>
 
