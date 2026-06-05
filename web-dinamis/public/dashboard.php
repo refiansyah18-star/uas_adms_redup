@@ -50,6 +50,12 @@ require __DIR__ . '/../app/partials/header.php';
       </div>
 
             <div class="panel">
+        <h2>Tipe Konten</h2>
+        <p>Distribusi koleksi berdasarkan tipe konten.</p>
+        <div class="chart-wrap"><canvas id="typeChart"></canvas></div>
+      </div>
+
+      <div class="panel">
         <h2>Genre Populer</h2>
         <p>Genre yang paling banyak muncul di koleksi WatchVault.</p>
 

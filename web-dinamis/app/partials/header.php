@@ -17,17 +17,36 @@
     <span>WatchVault</span>
   </a>
 
-  <nav class="nav">
-    <a class="<?= $active === 'dashboard' ? 'active' : '' ?>" href="/dashboard.php">Dashboard</a>
-    <a class="<?= $active === 'watchlist' ? 'active' : '' ?>" href="/watchlist.php">Watchlist</a>
-    <a class="<?= $active === 'tambah' ? 'active' : '' ?>" href="/tambah.php">Koleksi Baru</a>
-    <a class="<?= $active === 'tentang' ? 'active' : '' ?>" href="/tentang.php">Tentang</a>
-  </nav>
+  <?php if (is_logged_in()): ?>
+    <nav class="nav">
+      <a class="<?= $active === 'dashboard' ? 'active' : '' ?>" href="/dashboard.php">Dashboard</a>
+      <a class="<?= $active === 'watchlist' ? 'active' : '' ?>" href="/watchlist.php">Watchlist</a>
+      <a class="<?= $active === 'tambah' ? 'active' : '' ?>" href="/tambah.php">Koleksi Baru</a>
+      <a class="<?= $active === 'tentang' ? 'active' : '' ?>" href="/tentang.php">Tentang</a>
+    </nav>
+  <?php else: ?>
+    <nav class="nav">
+      <a class="<?= $active === 'tentang' ? 'active' : '' ?>" href="/tentang.php">Tentang</a>
+    </nav>
+  <?php endif; ?>
 
-  <a class="top-cta" href="/tambah.php">
-    <span class="material-symbols-outlined">add</span>
-    Koleksi Baru
-  </a>
+  <?php if (is_logged_in()): ?>
+    <div style="display:flex;align-items:center;gap:.75rem">
+      <span style="font-size:.85rem;color:var(--on-surface-variant);font-weight:500;">
+        <span class="material-symbols-outlined" style="font-size:1.1rem;vertical-align:-3px;margin-right:2px;">person</span>
+        <?= e(current_user()['full_name'] ?: current_user()['username']) ?>
+      </span>
+      <a class="top-cta" href="/logout.php" style="background:rgba(255,180,171,.1);color:var(--error);border:1px solid rgba(255,180,171,.2);">
+        <span class="material-symbols-outlined" style="font-size:1rem;">logout</span>
+        Keluar
+      </a>
+    </div>
+  <?php else: ?>
+    <a class="top-cta" href="/login.php" style="background:var(--primary);color:var(--on-primary);">
+      <span class="material-symbols-outlined" style="font-size:1.1rem;">login</span>
+      Login
+    </a>
+  <?php endif; ?>
 </header>
 
 <?php if ($flash = flash_get()): ?>

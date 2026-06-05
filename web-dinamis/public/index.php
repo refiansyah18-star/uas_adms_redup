@@ -15,19 +15,29 @@ require __DIR__ . '/../app/partials/header.php';
 
 <main class="container">
   <section class="landing-hero">
-    <div>
-      <div class="eyebrow">Personal media vault</div>
-      <h1>Kelola daftar film dan anime favoritmu.</h1>
-      <p>Simpan tontonan, pantau progress episode, beri rating, dan atur status watchlist dalam satu dashboard visual.</p>
+    <div class="hero-text">
+      <h1 class="hero-title">Satu tempat untuk semua <span class="gradient-text">tontonan</span> favoritmu.</h1>
+      <p class="hero-subtitle">Simpan, pantau progress, dan kurasi film, anime, serta series dalam koleksi pribadi yang rapi.</p>
       <div class="hero-actions">
-        <a class="btn primary" href="/dashboard.php">
-          <span class="material-symbols-outlined">dashboard</span>
-          Buka Dashboard
-        </a>
-        <a class="btn secondary" href="/watchlist.php">
-          <span class="material-symbols-outlined">movie_filter</span>
-          Lihat Koleksi
-        </a>
+        <?php if (is_logged_in()): ?>
+          <a class="btn primary" href="/dashboard.php">
+            <span class="material-symbols-outlined">dashboard</span>
+            Buka Dashboard
+          </a>
+          <a class="btn secondary" href="/watchlist.php">
+            <span class="material-symbols-outlined">movie_filter</span>
+            Lihat Koleksi
+          </a>
+        <?php else: ?>
+          <a class="btn primary" href="/login.php">
+            <span class="material-symbols-outlined">login</span>
+            Login
+          </a>
+          <a class="btn secondary" href="/tentang.php">
+            <span class="material-symbols-outlined">info</span>
+            Pelajari Platform
+          </a>
+        <?php endif; ?>
       </div>
     </div>
 
@@ -74,7 +84,14 @@ require __DIR__ . '/../app/partials/header.php';
     <h2>Siap merapikan koleksimu?</h2>
     <p>Total <?= e($total) ?> judul tersimpan, <?= e($watching) ?> sedang ditonton, dan <?= e($completed) ?> selesai ditonton.</p>
     <div class="hero-actions" style="justify-content:center">
-      <a class="btn primary" href="/tambah.php">Tambah Tontonan</a>
+      <?php if (is_logged_in()): ?>
+        <a class="btn primary" href="/tambah.php">Tambah Tontonan</a>
+      <?php else: ?>
+        <a class="btn primary" href="/login.php">
+          <span class="material-symbols-outlined">login</span>
+          Login
+        </a>
+      <?php endif; ?>
       <a class="btn secondary" href="/tentang.php">Pelajari Platform</a>
     </div>
   </section>
