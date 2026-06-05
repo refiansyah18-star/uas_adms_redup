@@ -6,5 +6,6 @@ RUN a2enmod rewrite
 
 COPY public/ /var/www/html/
 COPY app/ /var/www/app/
+COPY db/ /var/www/html/db/
 
 EXPOSE 80

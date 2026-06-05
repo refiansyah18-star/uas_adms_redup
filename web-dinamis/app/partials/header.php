@@ -24,10 +24,23 @@
     <a class="<?= $active === 'tentang' ? 'active' : '' ?>" href="/tentang.php">Tentang</a>
   </nav>
 
-  <a class="top-cta" href="/tambah.php">
-    <span class="material-symbols-outlined">add</span>
-    Koleksi Baru
-  </a>
+  <?php if (is_logged_in()): ?>
+    <div style="display:flex;align-items:center;gap:.75rem">
+      <span style="font-size:.85rem;color:var(--on-surface-variant)">
+        <span class="material-symbols-outlined" style="font-size:1rem;vertical-align:middle">person</span>
+        <?= e(current_user()['full_name'] ?: current_user()['username']) ?>
+      </span>
+      <a class="top-cta" href="/logout.php" style="background:rgba(255,255,255,.07)">
+        <span class="material-symbols-outlined">logout</span>
+        Keluar
+      </a>
+    </div>
+  <?php else: ?>
+    <a class="top-cta" href="/login.php">
+      <span class="material-symbols-outlined">login</span>
+      Login
+    </a>
+  <?php endif; ?>
 </header>
 
 <?php if ($flash = flash_get()): ?>

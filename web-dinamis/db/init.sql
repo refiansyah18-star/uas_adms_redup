@@ -1,3 +1,17 @@
+-- ── Users ────────────────────────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS users (
+  id            INT AUTO_INCREMENT PRIMARY KEY,
+  username      VARCHAR(60)  NOT NULL UNIQUE,
+  full_name     VARCHAR(120) NOT NULL DEFAULT '',
+  password_hash VARCHAR(255) NOT NULL,
+  created_at    TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Default user: username=admin / password=admin123
+-- Hash dibuat via PHP password_hash() — jalankan: php db/seed_users.php
+-- (tabel users dibuat di sini, user default di-insert oleh seed_users.php)
+
+-- ── Watchlist ─────────────────────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS watchlist (
   id INT AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(160) NOT NULL,

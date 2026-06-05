@@ -19,6 +19,9 @@ services:
         condition: service_healthy
     networks:
       - watchvault-network
+    # Seed user default setelah Apache start
+    command: >
+      sh -c "php /var/www/html/db/seed_users.php && apache2-foreground"
 
   mariadb-dinamis:
     image: mariadb:11.4

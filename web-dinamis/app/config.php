@@ -98,3 +98,27 @@ function avg_rating(PDO $db): string
     $value = $db->query("SELECT AVG(NULLIF(rating, 0)) FROM watchlist")->fetchColumn();
     return $value ? number_format((float)$value, 1) : '0.0';
 }
+
+// ── Auth helpers ──────────────────────────────────────────────────────────────
+
+function is_logged_in(): bool
+{
+    return !empty($_SESSION['user_id']);
+}
+
+function require_login(): void
+{
+    if (!is_logged_in()) {
+        header('Location: /login.php');
+        exit;
+    }
+}
+
+function current_user(): array
+{
+    return [
+        'id'        => $_SESSION['user_id']   ?? null,
+        'username'  => $_SESSION['username']  ?? '',
+        'full_name' => $_SESSION['full_name'] ?? '',
+    ];
+}
