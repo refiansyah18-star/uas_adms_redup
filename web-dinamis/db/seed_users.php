@@ -4,7 +4,7 @@
  * php db/seed_users.php
  * Atau bisa diintegrasikan ke init container.
  */
-require_once __DIR__ . '/../app/config.php';
+require_once __DIR__ . '/../../app/config.php';
 
 $db = db();
 
