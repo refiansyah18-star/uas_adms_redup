@@ -1,9 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/../app/config.php';
-require_login();
 
-$user = current_user();
 $db = db();
 
 $total = count_by($db, "SELECT COUNT(*) FROM watchlist");
@@ -27,7 +25,7 @@ require __DIR__ . '/../app/partials/header.php';
   <section class="dashboard-head">
     <div class="page-title">
       <span class="eyebrow">Dashboard</span>
-      <h1>Halo, <?= e($user['full_name'] ?: $user['username']) ?></h1>
+      <h1>Halo, Redup</h1>
       <p>Ringkasan koleksi film dan anime yang tersimpan di WatchVault.</p>
     </div>
     <a class="btn primary" href="/tambah.php">
