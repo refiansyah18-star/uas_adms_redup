@@ -62,8 +62,3 @@ Proyek ini menerapkan arsitektur **Cloud Native** dan menggunakan sistem Continu
 - **Tampilan Web Sebelum Update:** *(Masukkan gambar web awal)*
 - **Tampilan Web Setelah Update:** *(Masukkan gambar web setelah kode dipush)*
 
----
-
-**Mata Kuliah:** Administrasi Server (Cloud Computing II)  
-**Dosen Pengampu:** Mohamad Firdaus, M.Kom.  
-**Metode:** Project-Based Learning (PBL) & Outcome-Based Education (OBE)
