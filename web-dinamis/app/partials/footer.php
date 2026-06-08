@@ -1,7 +1,7 @@
 <footer class="footer">
   <div>
     <strong>WatchVault</strong>
-    <span>© <?= date('Y') ?> Ahmad Refiansyah Nazmi Mubarok-2388010039.</span>
+    <span>© <?= date('Y') ?> WatchVault. Koleksi tontonan pribadi dalam satu ruang.</span>
   </div>
 
   <nav>
